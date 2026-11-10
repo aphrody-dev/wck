@@ -1,0 +1,17 @@
+{
+  "name": "wck",
+  "version": "1.0.0",
+  "description": "Compile-Time Web Validator (Google SEO + AI Mode SEO + Modern Web Guidelines + Core Web Vitals + Lighthouse 100 + WASM + WebGPU Chromium Spec)",
+  "type": "module",
+  "bin": {
+    "wck": "./src/cli.ts"
+  },
+  "scripts": {
+    "build": "bun build --compile src/cli.ts --outfile C:/Users/aphro/.local/bin/wck.exe",
+    "test": "bun test",
+    "check": "bun check",
+    "fmt": "bun fmt"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
