@@ -133,5 +133,10 @@ export function loadWebContext(targetPath: string): WebFilesContext {
   }
 
   walkDir(resolved);
+  ctx.htmlFiles.sort((a, b) => {
+    if (a.relPath === "index.html") return -1;
+    if (b.relPath === "index.html") return 1;
+    return a.relPath.localeCompare(b.relPath);
+  });
   return ctx;
 }

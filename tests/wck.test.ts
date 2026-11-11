@@ -81,6 +81,17 @@ describe("Spec 1 — Google Search SEO Engine", () => {
     expect(res.score).toBe(100);
     expect(res.passed).toBe(true);
     expect(res.errors.length).toBe(0);
+
+    const indexCtx: WebFilesContext = {
+      ...mockCtx,
+      sitemapXml: `<?xml version="1.0" encoding="UTF-8"?>
+        <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+          <sitemap><loc>https://aphrody.com/sitemap-core.xml</loc></sitemap>
+        </sitemapindex>`,
+    };
+    const indexRes = validateSeoSpec(indexCtx);
+    expect(indexRes.score).toBe(100);
+    expect(indexRes.passed).toBe(true);
   });
 
   it("should fail when title length is outside 10..60 characters", () => {

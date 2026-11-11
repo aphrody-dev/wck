@@ -369,24 +369,29 @@ export function validateSeoSpec(ctx: WebFilesContext): SpecResult {
     });
   }
 
-  // 10. sitemap.xml validation
+  // 10. sitemap.xml validation (supports both <urlset> and <sitemapindex> per sitemaps.org 0.9)
   if (ctx.sitemapXml) {
     const hasXmlSchema = ctx.sitemapXml.includes(
       "http://www.sitemaps.org/schemas/sitemap/0.9",
     );
+    const hasValidRoot =
+      /<urlset\b/i.test(ctx.sitemapXml) ||
+      /<sitemapindex\b/i.test(ctx.sitemapXml);
     const hasLoc = /<loc>https:\/\/[^<]+<\/loc>/i.test(ctx.sitemapXml);
-    if (hasXmlSchema && hasLoc) {
+    if (hasXmlSchema && hasValidRoot && hasLoc) {
       checks.push({
         id: "seo-sitemap-xml",
         name: "sitemap.xml Schema Validation",
         description:
           "Valid sitemap.xml following sitemaps.org 0.9 schema with HTTPS <loc>",
         status: "pass",
-        metric: "sitemap.xml valid",
+        metric: /<sitemapindex\b/i.test(ctx.sitemapXml)
+          ? "sitemapindex valid"
+          : "urlset valid",
       });
     } else {
       const err =
-        "sitemap.xml is missing standard XML schema or HTTPS <loc> entries";
+        "sitemap.xml is missing standard XML schema, <urlset>/<sitemapindex>, or HTTPS <loc> entries";
       errors.push(err);
       checks.push({
         id: "seo-sitemap-xml",

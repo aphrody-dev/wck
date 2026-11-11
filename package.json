@@ -1,5 +1,5 @@
 {
-  "name": "wck",
+  "name": "@aphrody/wck",
   "version": "1.0.0",
   "description": "Compile-Time Web Validator (Google SEO + AI Mode SEO + Modern Web Guidelines + Core Web Vitals + Lighthouse 100 + WASM + WebGPU Chromium Spec)",
   "type": "module",

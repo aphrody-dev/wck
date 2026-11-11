@@ -41,7 +41,9 @@ for (const arg of args) {
     printHelp();
     process.exit(0);
   } else if (arg === "-v" || arg === "--version" || arg === "version") {
-    console.log("wck v1.0.0 (Compile-Time Web Validator - oven-sh/bun v1.4.4 Full Rust)");
+    console.log(
+      "wck v1.0.0 (Compile-Time Web Validator - oven-sh/bun v1.4.4 Full Rust)",
+    );
     process.exit(0);
   } else if (arg === "--json") {
     jsonOutput = true;
